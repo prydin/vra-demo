@@ -6,4 +6,10 @@ wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifac
 git config --global --unset core.autocrlf
 java -Xmx2G -jar BuildTools.jar
 echo "eula=true" > eula.txt 
-# java -Xmx2g -jar spigot-*.jar
+
+# Add seed if specified
+if [ -n "$MC_SEED" ]; then
+    wget https://raw.githubusercontent.com/prydin/vra-demo/master/vra-demo/minecraft/server.properties
+    sed -ibak "s/\$MC_SEED/$MC_SEED/" server.properties
+fi
+
