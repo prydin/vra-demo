@@ -1,4 +1,5 @@
 #!/bin/bash
+chnod +x /etc/spigot-env.sh
 . /etc/spigot-env.sh
 useradd minecraft
 mkdir /opt/spigot
@@ -17,4 +18,9 @@ fi
 if [ -n "$MC_GAMEMODE" ]; then
     sed -ibak "s/gamemode=survival/gamemode=$MC_GAMEMODE/" server.properties
 fi
+
+# Install service
+cp /opt/spigot/spigot.service /etc/systemd/system
+systemctl enable spigot
+systemctl start spigot
 
