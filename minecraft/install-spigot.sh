@@ -1,4 +1,5 @@
 #!/bin/bash
+. /etc/spigot-env.sh
 useradd minecraft
 mkdir /opt/spigot
 cd /opt/spigot/
@@ -6,17 +7,6 @@ wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifac
 git config --global --unset core.autocrlf
 java -Xmx2G -jar BuildTools.jar
 echo "eula=true" > eula.txt 
-
-# Create environment file
-cat << EOF > env.sh
-#!/bin/bash
-# Auto generated.
-#
-export MC_SEED=$MC_SEED
-export MC_GAMEMODE=$MC_GAMEMODE
-export MC_VERSION=$MC_VERSION
-EOF
-chmod +x env.sh
 
 # Add game settings
 wget https://raw.githubusercontent.com/prydin/vra-demo/master/vra-demo/minecraft/server.properties

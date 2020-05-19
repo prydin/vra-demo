@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/spigot
-ExecStart=java -Xmx2g -jar spigot-*.jar
+ExecStart=/opt/spigot/start.sh
 ExecStop=killall -r "java.*-jar spigot.*"
 Type=forking
 PIDFile=/opt/spigot/spigot.pid
