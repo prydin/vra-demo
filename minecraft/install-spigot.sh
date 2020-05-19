@@ -15,9 +15,10 @@ if [ -n "$MC_SEED" ]; then
     sed -ibak "s/\$MC_SEED/$MC_SEED/" server.properties
 fi
 
-if [ -n "$MC_GAMEMODE" ]; then
-    sed -ibak "s/gamemode=survival/gamemode=$MC_GAMEMODE/" server.properties
+if [ -z "$MC_GAMEMODE" ]; then
+    MC_GAMEMODE=survival
 fi
+sed -ibak "s/\$MC_GAMEMODE/$MC_GAMEMODE/" server.properties
 
 # Install service
 cp /opt/spigot/spigot.service /etc/systemd/system
