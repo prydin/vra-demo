@@ -1,0 +1,13 @@
+[Unit]
+Description=service_description
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/spigot
+ExecStart=java -Xmx2g -jar spigot-*.jar
+ExecStop=killall -r "java.*-jar spigot.*"
+Type=forking
+PIDFile=/opt/spigot/spigot.pid
+
+[Install]
+WantedBy=multi-user.target
