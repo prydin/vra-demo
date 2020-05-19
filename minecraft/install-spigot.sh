@@ -10,7 +10,6 @@ java -Xmx2G -jar BuildTools.jar
 echo "eula=true" > eula.txt 
 
 # Add game settings
-wget https://raw.githubusercontent.com/prydin/vra-demo/master/vra-demo/minecraft/server.properties
 if [ -n "$MC_SEED" ]; then
     sed -ibak "s/\$MC_SEED/$MC_SEED/" server.properties
 fi
