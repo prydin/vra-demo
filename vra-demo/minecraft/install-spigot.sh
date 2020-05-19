@@ -7,7 +7,18 @@ git config --global --unset core.autocrlf
 java -Xmx2G -jar BuildTools.jar
 echo "eula=true" > eula.txt 
 
-# Add settings if
+# Create environment file
+cat << EOF > env.sh
+#!/bin/bash
+# Auto generated.
+#
+export MC_SEED=$MC_SEED
+export MC_GAMEMODE=$MC_GAMEMODE
+export MC_VERSION=$MC_VERSION
+EOF
+chmod +x env.sh
+
+# Add game settings
 wget https://raw.githubusercontent.com/prydin/vra-demo/master/vra-demo/minecraft/server.properties
 if [ -n "$MC_SEED" ]; then
     sed -ibak "s/\$MC_SEED/$MC_SEED/" server.properties
