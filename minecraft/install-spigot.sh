@@ -10,14 +10,12 @@ java -Xmx2G -jar BuildTools.jar
 echo "eula=true" > eula.txt 
 
 # Add game settings
-if [ -n "$MC_SEED" ]; then
-    sed -i .bak "s/\$MC_SEED/$MC_SEED/" server.properties
-fi
+sed -i.bak "s/\$MC_SEED/$MC_SEED/" server.properties
 
 if [ -z "$MC_GAMEMODE" ]; then
     MC_GAMEMODE=survival
 fi
-sed -i .bak "s/\$MC_GAMEMODE/$MC_GAMEMODE/" server.properties
+sed -i.bak "s/\$MC_GAMEMODE/$MC_GAMEMODE/" server.properties
 
 
 # Create log directory
