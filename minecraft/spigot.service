@@ -6,7 +6,7 @@ After=network.target
 WorkingDirectory=/opt/spigot
 ExecStart=/opt/spigot/start.sh
 ExecStop=/usr/bin/killall -r "java.*-jar spigot.*"
-Type=forking
+Type=simple
 PIDFile=/opt/spigot/spigot.pid
 
 [Install]

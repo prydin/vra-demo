@@ -11,13 +11,17 @@ echo "eula=true" > eula.txt
 
 # Add game settings
 if [ -n "$MC_SEED" ]; then
-    sed -ibak "s/\$MC_SEED/$MC_SEED/" server.properties
+    sed -i .bak "s/\$MC_SEED/$MC_SEED/" server.properties
 fi
 
 if [ -z "$MC_GAMEMODE" ]; then
     MC_GAMEMODE=survival
 fi
-sed -ibak "s/\$MC_GAMEMODE/$MC_GAMEMODE/" server.properties
+sed -i .bak "s/\$MC_GAMEMODE/$MC_GAMEMODE/" server.properties
+
+
+# Create log directory
+mkdir /opt/spigot/log
 
 # Install service
 cp /opt/spigot/spigot.service /etc/systemd/system
