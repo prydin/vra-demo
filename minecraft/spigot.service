@@ -1,5 +1,5 @@
 [Unit]
-Description=service_description
+Description=SpigotMC
 After=network.target
 
 [Service]
