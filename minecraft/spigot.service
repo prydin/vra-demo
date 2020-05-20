@@ -1,13 +1,24 @@
 [Unit]
-Description=SpigotMC
+Description=Minecraft Server
 After=network.target
 
 [Service]
 WorkingDirectory=/opt/spigot
-ExecStart=/opt/spigot/start.sh
-ExecStop=/usr/bin/killall -r "java.*-jar spigot.*"
-Type=simple
-PIDFile=/opt/spigot/spigot.pid
+
+User=minecraft
+Group=minecraft
+
+Restart=always
+
+ExecStart=/usr/bin/screen -DmS minecraft /opt/spigot/start.sh
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say SERVER SHUTTING DOWN IN 15 SECONDS..."\015'
+ExecStop=/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say SERVER SHUTTING DOWN IN 10 SECONDS..."\015'
+ExecStop=/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say SERVER SHUTTING DOWN IN 5 SECONDS..."\015'
+ExecStop=/bin/sleep 5
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "save-all"\015'
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "stop"\015'
 
 [Install]
 WantedBy=multi-user.target
