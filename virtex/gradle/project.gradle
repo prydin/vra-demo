@@ -1,0 +1,40 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'com.github.sherter.google-java-format' version '0.9'
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = '0.1.0'
+sourceCompatibility = '1.13'
+
+googleJavaFormat {
+    toolVersion = '1.7'
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDirs 'src/main/resources', 'src/test/resources'
+        }
+    }
+}
